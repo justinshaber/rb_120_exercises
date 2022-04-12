@@ -5,22 +5,48 @@ class Pet
     @breed = breed
     @name = name
   end
+
+  def to_s
+    "  a #{breed} named #{name}"
+  end
 end
 
 class Owner
-  attr_reader :name
+  attr_reader :name, :pets
 
   def initialize(name)
     @name = name
+    @pets = []
+  end
+
+  def number_of_pets
+    pets.size
+  end
+
+  def add_pet(animal)
+    pets << animal
+  end
+
+  def to_s
+    puts "#{name} has the following pets: "
+    pets.each { |pet| puts pet }
   end
 end
 
 class Shelter
+  attr_reader :owner_list
+
   def initialize
+    @owner_list = {}
   end
 
-  def adopt
-    
+  def adopt(owner, animal)
+    owner_list[owner] = true
+    owner.add_pet(animal)
+  end
+
+  def print_adoptions
+    owner_list.each_key(&:to_s)
   end
 end
 
@@ -43,7 +69,9 @@ shelter.adopt(bholmes, kennedy)
 shelter.adopt(bholmes, sweetie)
 shelter.adopt(bholmes, molly)
 shelter.adopt(bholmes, chester)
+
 shelter.print_adoptions
+
 puts "#{phanson.name} has #{phanson.number_of_pets} adopted pets."
 puts "#{bholmes.name} has #{bholmes.number_of_pets} adopted pets."
 
