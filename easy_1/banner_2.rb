@@ -1,3 +1,22 @@
+=begin
+PROBLEM:
+
+Modify this class so new will optionally let you specify a fixed banner width at the time the Banner object is created. The message in the banner should be centered within the banner of that width. Decide for yourself how you want to handle widths that are either too narrow or too wide.
+
+EXAMPLES - 
+If the width is too wide:
+Size of the string, size of the width
+if the width is even and 
++--------------------------------------------------+
+|                                                  |
+|    To boldly go where no one has gone before.    |
+|                                                  |
++--------------------------------------------------+
+DS - 
+ALGO - 
+CODE -
+=end
+
 class Banner
   def initialize(message)
     @message = message
