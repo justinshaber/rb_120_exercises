@@ -37,4 +37,3 @@ class Truck < Vehicle
     6
   end
 end
-
