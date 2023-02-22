@@ -1,4 +1,5 @@
-class AuthenticationError < Exception; end
+require 'pry'
+class AuthenticationError < StandardError; end
 
 # A mock search engine
 # that returns a random number instead of an actual count.
@@ -29,14 +30,14 @@ module DoesItRock
       negative = SearchEngine.count(%{"#{term} is not fun"}, API_KEY).to_f
 
       positive / (positive + negative)
-    rescue Exception
-      NoScore
+    rescue ZeroDivisionError
+      NoScore.new
     end
   end
 
   def self.find_out(term)
     score = Score.for_term(term)
-
+    # binding.pry
     case score
     when NoScore
       "No idea about #{term}..."
@@ -47,7 +48,7 @@ module DoesItRock
     else
       "#{term} rocks!"
     end
-  rescue Exception => e
+  rescue StandardError => e
     e.message
   end
 end
