@@ -15,9 +15,7 @@ class Minilang
   end
 
   def eval
-    string.split(" ").each do |command|
-      eval_command(command)
-    end
+    string.split(" ").each { |command| eval_command(command) }
   rescue MinilangError => e
     puts e.message
   end
